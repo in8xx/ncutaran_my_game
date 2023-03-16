@@ -21,6 +21,14 @@ from sprites import *
 game_folder = os.path.dirname(__file__)
 img_folder = os.path.join(game_folder, "img")
 
+def draw_text(text, size, color, x, y):
+    font_name = pg.font.match_font('arial')
+    font = pg.font.Font(font_name, size)
+    text_surface = font.render(text, True, color)
+    text_rect = text_surface.get_rect()
+    text_rect.midtop = (x,y)
+    screen.blit(text_surface, text_rect)
+
 def get_mouse_now():
     x,y = pg.mouse.get_pos()
     return (x,y)
@@ -38,26 +46,22 @@ all_sprites = pg.sprite.Group()
 enemies = pg.sprite.Group()
 player = Player()
 
-enemy1 = Mob(100,100,AQUA)
-enemy2 = Mob (80,80,ARMY)
-enemy3 = Mob(60,60,CITRINE)
-enemy4 = Mob(40,40,NYANZA)
-
 all_sprites.add(player)
-all_sprites.add(enemy1) 
-all_sprites.add(enemy2) 
-all_sprites.add(enemy3) 
-all_sprites.add(enemy4) 
+player.pos = (0,0)
 
+# creats a forloop four 20 mobs, random sizes 
 for i in range(0, 20):
-    m = Mob(randint(30,90), randint(30,90))
-    all_sprites.add(m)
+    # imstantiates mobs
+    m = Mob([randint(30,90)], [randint(30,90)], [randint(0,255), randint(0,255), randint(0,255)])
     enemies.add(m)
+    all_sprites.add(m)
+    
 # all_sprites.add(testSprite)
 
 
 # game loop
 
+# as long as the loop is true, it will run forever
 while RUNNING:
     #  keep loop running at the right speed
     clock.tick(FPS)
@@ -70,16 +74,28 @@ while RUNNING:
     # print(get_mouse_now())
     ### update section of game loop (if updates take longer the 1/30th of a second, you will get laaaaag...)
     all_sprites.update()
+        
 
-    blocks_hit_list = pg.sprite.spritecollide(player, enemies, True)
+    # if a player sprite and an enemy sprite collide then...
+    blocks_hit_list = pg.sprite.spritecollide(player, enemies, False)
+
+
+    # Goes through a list of things
     for block in blocks_hit_list:
-        # print(enemies)
+        SCORE += 1
+        print(SCORE)
         pass
-    ### draw and render section of game loop
+        
+    
+    # draw and render section of game loop
     screen.fill(BABYBLUE)
+    enemies.draw(screen)
     all_sprites.draw(screen)
+    draw_text('Score ' + str(SCORE), 22, WHITE, WIDTH/2, WIDTH/10)
     # double buffering draws frames for entire screen
     pg.display.flip()
     # pygame.display.update() -> only updates a portion of the screen
 # ends program when loops evaluates to false
 pg.quit()
+
+    

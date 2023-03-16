@@ -19,7 +19,7 @@ vec = pg.math.Vector2
 class Player(Sprite):
     def __init__(self):
         Sprite.__init__(self)
-        self.image = pg.Surface((50,50))
+        self.image = pg.Surface((20,20))
         self.image.fill(BLACK)
         self.rect = self.image.get_rect()
         self.rect.center = (WIDTH/2, HEIGHT/2)
@@ -41,24 +41,22 @@ class Player(Sprite):
         if keystate[pg.K_w]:
             self.acc.y = -PLAYER_ACC
     
-    # this is a method that keeps it on screen
     def inbounds(self):
-        if self.rect.x > WIDTH - 50:
-            self.pos.x = WIDTH - 25
-            self.pos.x = 0
-
+        if self.rect.x > WIDTH - 20:
+            self.pos.x = WIDTH - 20
+            # self.vel.x = 0
+            
         if self.rect.x < 0:
-            self.pos.x = WIDTH + 25
-            self.vel.x = 0
-          
-        if self.rect.y < 0:
-            self.pos.y = HEIGHT - 25
-            self.pos.y = 0
-  
+            self.pos.x = WIDTH + 20
+            print('left')
+            
         if self.rect.y > HEIGHT:
-    
-            self.pos.y = HEIGHT - 25
-            self.pos.y = 0
+            self.pos.y = HEIGHT + 20
+            print ('bottom')
+            
+        if self.rect.y < 0:
+            print('top')
+
 
     def update(self):        
         self.inbounds()
@@ -84,49 +82,7 @@ class Mob(Sprite):
         self.acc = vec(1,1)
         self.cofric = 0.01
 
-    # def inbounds(self):
-    #     if self.rect.x > WIDTH - 50:
-    #         # self.pos.x = WIDTH - 25
-    #         self.vel.x *= -1 
-    #         # print("i am off the right side of the screen...")
-    #     if self.rect.x < 0:
-    #         self.vel.x *= -1
-    #         # print("i am off the left side of the screen...")
-    #     if self.rect.y > HEIGHT:
-    #         self.vel.y *= -1
-    #         # print("i am off the bottom of the screen")
-    #     if self.rect.y < 0:
-    #         self.vel.y *=1
-    #         # print("i am off the top of the screen...")
-
-    # def behavior(self):
-    #     # acc go up
-    #     self.acc.y = -MOB_ACC
-    #     # self.acc.x = -MOB_ACC 
-    #     # self.acc.y = MOB_ACC
-    #     # self.acc.x = MOB_ACC
-    #     if self.rect.x > WIDTH:
-    #         print("I'm off the right screen...")
-    #     if self.rect.x < 0:
-    #         print("I'm off the left screen...")
-    #     if self.rect.y < 0:
-    #         print("I'm off the top screen...")
-    #         # reduces vel
-    #         self.vel *= -1
-    #         self.acc *= -1
-    #         self.pos.y <= 0
-    #     if self.rect.y > HEIGHT:
-    #         print("I'm off the bottom screen...")
-
-    # def update(self):
-    #     # self.inbounds()
-        
-    #     self.acc = self.vel * MOB_FRICTION
-    #     self.vel += self.acc
-    #     self.behavior()
-    #     self.pos += self.vel + 0.5 * self.acc
-    #     self.rect.center = self.pos
-
+   
     def inbounds(self):
         if self.rect.x > WIDTH:
             self.vel.x *= -1
