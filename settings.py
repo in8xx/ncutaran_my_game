@@ -1,9 +1,12 @@
+from random import randint
 WIDTH = 800
 HEIGHT = 600
 PLAYER_ACC = 2
 PLAYER_FRICTION = -0.5
 MOB_ACC = 2
 MOB_FRICTION = -0.3
+PLAYER_JUMP = 20
+PLAYER_GRAV = 0.8
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 BABYBLUE = (137, 207, 240)
@@ -12,6 +15,8 @@ AQUA = (0,255,255)
 ARMY = (69, 75, 27)
 CITRINE = (288, 208, 10)
 NYANZA = (236, 255, 220)
+PINK = (255, 192, 203)
+RANDCOLOR = [randint(0, 255), randint(0, 255), randint(0, 255)]
 FPS = 60
 RUNNING = True
 SCORE = 0
