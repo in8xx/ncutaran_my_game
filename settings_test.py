@@ -10,10 +10,7 @@ BLACK = (0,0,0)
 WHITE = (255,255,255)
 BLUE = (50,50,255)
 BABYBLUE = (137, 207, 240)
-SLIME = (50, 205, 50)
 RED = (255,50,50)
-from random import randint
-RANDCOLOR = [randint(0,255), randint(0,255), randint(0,255)]
 
 FPS = 60
 RUNNING = True
@@ -22,7 +19,7 @@ PAUSED = False
 
 # Starting platforms
 PLATFORMS_LIST = [(0, HEIGHT - 40, WIDTH, 40, (200,200,200), "normal"),
-                 (WIDTH / 2 - 50, HEIGHT * 3 / 4, 100, 20, (SLIME), "bouncey"),
-                 (125, HEIGHT - 350, 100, 5, (RED), "disappearing "),
+                 (WIDTH / 2 - 50, HEIGHT * 3 / 4, 100, 20, (200,200,200), "bouncey"),
+                 (125, HEIGHT - 350, 100, 5, (200,200,200), "disappearing "),
                  (350, 200, 100, 20, (200,200,200), "normal"),
                  (175, 100, 50, 20, (200,200,200), "normal")]

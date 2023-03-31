@@ -1,19 +1,22 @@
-# File created by Nathan Cutaran
+# File created by: Chris Cozort
+# Agenda:
+# gIT GITHUB    
+# Build file and folder structures
+# Create libraries
+# testing github changes
+# I changed something - I changed something else tooooo!
+
+# This file was created by: Chris Cozort
+# Sources: http://kidscancode.org/blog/2016/08/pygame_1-1_getting-started/
+# Sources: 
 
 # import libs
 import pygame as pg
 import os
-
 # import settings 
-from settings import *
-
+from settings_test import *
+from sprites_test import *
 # from pg.sprite import Sprite
-from sprites import *
-
-'''
-add rocket powerup
-'''
-
 
 # set up assets folders
 game_folder = os.path.dirname(__file__)
@@ -50,7 +53,7 @@ class Game:
             self.all_sprites.add(p)
             self.platforms.add(p)
         for i in range(0,10):
-            m = Mob(20,20,(RANDCOLOR))
+            m = Mob(20,20,(0,255,0))
             self.all_sprites.add(m)
             self.enemies.add(m)
         self.run()
@@ -88,6 +91,7 @@ class Game:
     def draw(self):
         self.screen.fill(BABYBLUE)
         self.all_sprites.draw(self.screen)
+        # is this a method or a function?
         pg.display.flip()
     def draw_text(self, text, size, color, x, y):
         font_name = pg.font.match_font('arial')

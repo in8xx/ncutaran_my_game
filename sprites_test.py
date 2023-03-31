@@ -1,10 +1,12 @@
-# # File created by Nathan Cutaran
 import pygame as pg
 from pygame.sprite import Sprite
 from settings import *
 from random import randint
 
+
 vec = pg.math.Vector2
+
+# player class
 
 class Player(Sprite):
     def __init__(self, game):
