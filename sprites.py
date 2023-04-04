@@ -34,7 +34,8 @@ class Player(Sprite):
         self.rect.x += 1
         hits = pg.sprite.spritecollide(self, self.game.platforms, False)
         self.rect.x -= 1
-        self.vel.y = -PLAYER_JUMP
+        if hits:
+            self.vel.y = -PLAYER_JUMP
 
 # method in player class that defines the boundaries, in this case it wraps around
     def inbounds(self):
@@ -43,12 +44,7 @@ class Player(Sprite):
         if self.rect.x < 0:
             self.pos.x = WIDTH
 
-    # def mob_collide(self):
-    #         hits = pg.sprite.spritecollide(self, self.game.enemies, True)
-    #         if hits:
-    #             print("you collided with an enemy...")
-    #             self.game.score += 1
-    #             print(SCORE)
+
 
 
 # method in the player class that is an output to the input, hence "update", it calles the methods self.input() and self.inbounds()

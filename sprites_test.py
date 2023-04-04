@@ -92,16 +92,16 @@ class Mob(Sprite):
     # ...
     def inbounds(self):
         if self.rect.x > WIDTH:
-            self.vel.x *= -1
+            self.vel.x *= -0.1
             # self.acc = self.vel * -self.cofric
         if self.rect.x < 0:
-            self.vel.x *= -1
+            self.vel.x *= -0.1
             # self.acc = self.vel * -self.cofric
         if self.rect.y < 0:
-            self.vel.y *= -1
+            self.vel.y *= -0.1
             # self.acc = self.vel * -self.cofric
         if self.rect.y > HEIGHT:
-            self.vel.y *= -1
+            self.vel.y *= -0.1
             # self.acc = self.vel * -self.cofric
     def update(self):
         self.inbounds()
