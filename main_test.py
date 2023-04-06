@@ -12,8 +12,7 @@ from sprites import *
 
 '''
 GOAL: Add platforms when plaver < y = 0, 
-GOAL 2: Variety of random platforms show up from
-GOAL 2: Add mobs that collides with player
+GOAL 3: Add mobs that collides with player
 '''
 
 
@@ -84,10 +83,12 @@ class Game:
         self.player = Player(self)
         self.all_sprites.add(self.player)
         for plat in PLATFORMS_LIST:
+            # calls the variable "p", in the mob class
             p = Platform(*plat)
             self.all_sprites.add(p)
             self.platforms.add(p)
         for i in range(0,10):
+            # calls the variable "m", the mob class
             m = Mob(20,20,(RED))
             self.all_sprites.add(m)
             self.enemies.add(m)
@@ -115,7 +116,8 @@ class Game:
                 if event.key == pg.K_SPACE:
                     self.player.jump()
 
-    # method for drawing the game, calls upon other methods 3
+    # method for drawing the game
+    # draws background, sprites, and text
     def draw(self):
         self.screen.fill(WHITE)
         self.all_sprites.draw(self.screen)
@@ -136,16 +138,27 @@ class Game:
         # Updates the Game Loop
         self.all_sprites.update()
         
+        # variable for when the mob hits the plater
         mhits = pg.sprite.spritecollide(self.player, self.enemies, False)
+        # when mob hits...
         if mhits:
+            # mob hits player on the left, then the moves 10 pixels to right
             if self.player.vel.x < 0:
                 self.player.pos.x += 10
+            
+            # mob hits player on the right, then  moves player 10 pixels to the left
             if self.player.vel.x > 0:
                 self.player.pos.x -= 10
+            # mob hits player from bottom, then moves player 10 pixels up
+
             if self.player.vel.y > 0:
                 self.player.pos.y -= 10
+
+            # mob hits player from the top, then moves player 10 pixels doen
             if self.player.vel.y < 0:
                 self.player.pos.y += 10
+
+        
             
         # checks if player collides with a platform
         if self.player.vel.y > 0:
@@ -171,8 +184,11 @@ class Game:
         if self.player.rect.bottom > HEIGHT:
             for sprite in self.all_sprites:
                 sprite.rect.y -= max(self.player.vel.y, 10)
+
+                # stops the loop
                 if sprite.rect.bottom < 0:
-                    sprite.kill()
+                    sprite.kill()  
+                    
         if len(self.platforms) == 0:
             self.playing = False
 
@@ -185,11 +201,6 @@ class Game:
                 p = Platform(randint(0, WIDTH - width), randint(-2, -1), width, height, BABYBLUE, 'normal')
                 self.platforms.add(p)
                 self.all_sprites.add(p)
-                # b = Platform(randint(0, WIDTH - width), randint(-2, -1), width, height, SLIME, 'bouncey')
-                # self.platforms.add(b)
-                # self.all_sprites.add(b)
-
-
                             
 # instantiates the game class
 g = Game()
@@ -199,6 +210,7 @@ g = Game()
 while g.running:
     menu()
     g.new()
+
   
 
 pg.quit()
