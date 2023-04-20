@@ -29,6 +29,5 @@ PAUSED = False
 # Starting platforms
 PLATFORMS_LIST = [(0, HEIGHT - 40, WIDTH, 40, (200,200,200), "normal"),
                  (WIDTH / 2 - 50, HEIGHT * 3 / 4, 100, 20, (SLIME), "bouncey"),
-                #  (125, HEIGHT - 350, 100, 5, (200,200,200), "disappearing "),
                  (350, 200, 100, 20, (BABYBLUE), "normal"),
                  (175, 400, 100, 20, (BABYBLUE), "normal")]
